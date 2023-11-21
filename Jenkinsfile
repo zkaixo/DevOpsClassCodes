@@ -1,53 +1,39 @@
 pipeline{
-	agent any
-	// tools{
-	// 	maven "test-maven"
-	// }
-      stages{
-           stage('Checkout'){
-	    
-               steps{
-		 echo 'cloning..'
-                 git 'https://github.com/akshu20791/DevOpsClassCodes.git'
-              }
-          }
-          stage('Compile'){
-             
-              steps{
-                  echo 'compiling..'
-                  sh 'mvn compile'
-	      }
-          }
-          stage('CodeReview'){
-		  
-              steps{
-		    
-		  echo 'codeReview'
-                  sh 'mvn pmd:pmd'
-		  recordIssues(tools: [pmdParser()])
-              }
-          }
-           stage('UnitTest'){
-		  
-              steps{
-	         
-                  sh 'mvn test'
-              }
-               post {
-               success {
-                   junit 'target/surefire-reports/*.xml'
-               }
-           }	
-          }
-          
-          stage('Package'){
-		  
-              steps{
-		  
-                  sh 'mvn package'
-              }
-          }
-	     
-          
-      }
+    agent any
+    stages{
+        stage("Checkout the code from github repo with akshat"){
+            steps{
+                git url: 'https://github.com/akshu20791/DevOpsClassCodes'
+                echo 'checkout done'
+            }
+        }
+        stage("compile the code"){
+            steps{
+               sh "mvn compile"
+               echo "compile done"
+            }
+        }
+        stage("test the code"){
+            steps{
+                sh "mvn test"
+                echo "testing done"
+            }
+        }
+        stage("qa by akshat"){
+            steps{
+                sh "mvn pmd:pmd"
+                echo "generate report"
+                recordIssues(tools: [pmdParser()])
+            }
+        }
+        stage("packaging"){
+            steps{
+                sh "mvn package"
+                echo "converted code to jar format"
+            }
+        }
+    }
+    
+    
+    
 }

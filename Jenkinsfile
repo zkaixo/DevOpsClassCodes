@@ -33,7 +33,20 @@ pipeline{
             }
         }
     }
-    
+     stage('Build Image') {
+            steps { 
+                sh 'docker build -t jarimage .'
+                sh 'docker tag jarimage:latest akshu20791/addressbookimg:latest'
+            }    
+       }
+    stage('Docker login') {
+            steps { 
+                withCredentials([usernamePassword(credentialsId: 'dockercred', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                sh "echo $PASS | docker login -u $USER --password-stdin"
+                sh 'docker push akshu20791/addressbookimg:latest'
+                }
+            }
+       }
     
     
 }

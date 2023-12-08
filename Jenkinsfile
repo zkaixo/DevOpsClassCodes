@@ -23,7 +23,7 @@ pipeline{
             steps{
                 sh "mvn pmd:pmd"
                 echo "generate report"
-                recordIssues(tools: [pmdParser()])
+              //  recordIssues(tools: [pmdParser()])
             }
         }
         stage("packaging"){

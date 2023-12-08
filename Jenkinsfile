@@ -46,6 +46,16 @@ pipeline{
                 sh 'docker push akshu20791/addressbookimg:latest'
                 }
             }
+        stage('Deploy') {
+            steps {  
+                script {
+                   def dockerCmd = 'docker run -itd --name My-first-container -p 80:8081 akshu20791/addressbookimg:latest'
+                   sshagent(['sshkeypair']) {
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@51.20.192.244 ${dockerCmd}"
+                   }
+                }
+            }
+       }
        }
     }
     

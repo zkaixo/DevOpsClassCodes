@@ -1,3 +1,5 @@
-FROM tomcat:9.0
-COPY /var/lib/jenkins/workspace/pipeline2/target/addressbook.war /usr/local/tomcat/webapps
+FROM tomcat:latest
+LABEL maintainer="Akshat Gupta"
+ADD ./target/addressbook.war /usr/local/tomcat/webapps/
+EXPOSE 8083
 CMD ["catalina.sh", "run"]

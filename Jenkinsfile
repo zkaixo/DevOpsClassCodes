@@ -32,7 +32,7 @@ pipeline{
                 echo "converted code to jar format"
             }
         }
-    }
+   
      stage('Build Image') {
             steps { 
                 sh 'docker build -t jarimage .'

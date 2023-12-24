@@ -29,10 +29,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    def dockerCmd = 'docker run -itd --name My-first-containe21 -p 80:8084 akshu20791/akshatimgaddbook:latest'
+                    def dockerCmd = 'docker run -itd --name My-first-containe21 -p 80:8081 akshu20791/akshatimgaddbook:latest'
                     sshagent(['sshkeypair']) {
-                        sh "sudo usermod -aG docker jenkins"
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.232 ${dockerCmd}"
+                        sh "echo hello workd"
+                        //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.232 ${dockerCmd}"
                     }
                 }
             }

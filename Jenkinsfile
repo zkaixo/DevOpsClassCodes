@@ -31,8 +31,7 @@ pipeline {
                 script {
                     def dockerCmd = 'docker run -itd --name My-first-containe21 -p 80:8081 akshu20791/akshatimgaddbook:latest'
                     sshagent(['sshkeypair']) {
-                        sh "echo hello workd"
-                        //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.232 ${dockerCmd}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.232 ${dockerCmd}"
                     }
                 }
             }

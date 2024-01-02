@@ -1,0 +1,41 @@
+pipeline{
+    agent any
+    environment {
+        VCS = "git"
+        FNAME = "akshat"
+        compilegoal = "compile"
+        testinggoal = "test"
+        qagoal = "checkstyle:checkstyle"
+        packagegoal = "package"
+    }
+    stages{
+        stage("checkout the code from github"){
+            steps{
+                echo "our version control system is ${VCS}"
+                git url:"https://github.com/akshu20791/DevOpsClassCodes"
+            }
+        }
+        stage("compile the code"){
+            steps{
+                sh "mvn ${compilegoal}"
+            }
+        }
+        stage("test the functionality of the code"){
+            steps{
+                sh "mvn ${testinggoal}"
+            }
+        }
+        stage("quality assurance of the code"){
+            steps{
+                sh "mvn ${qagoal}"
+                echo"Generating the reports"
+                recordIssues(tools: [checkStyle()])
+            }
+        }
+        stage("package the code"){
+            steps{
+                sh "mvn ${packagegoal}"
+            }
+        }
+    }
+}

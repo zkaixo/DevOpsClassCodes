@@ -20,9 +20,14 @@ pipeline{
         }
         stage('qa with akshat'){
             steps{
-                sh 'mvn checkstyle:checkstyle'
+                mvn sonar:sonar \
+                -Dsonar.projectKey=myproject \
+                -Dsonar.host.url=http://3.235.6.184:9000 \
+                -Dsonar.login=f46aed43925b1d0b654454cb5085165ef0951843
             }
         }
+
+
         stage('package with akshat'){
             steps{
                 sh 'mvn package'

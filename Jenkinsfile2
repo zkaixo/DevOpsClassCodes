@@ -24,6 +24,7 @@ pipeline{
             }
         }
         stage('package with akshat'){
+           when { anyof { branch 'master'; branch: main } }
             steps{
                 sh 'mvn package'
             }

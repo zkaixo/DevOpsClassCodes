@@ -16,11 +16,13 @@ pipeline{
         stage('codetesting with akshat'){
             steps{
                 sh 'mvn test'
+ 
             }
         }
         stage('qa with akshat'){
             steps{
                 sh 'mvn checkstyle:checkstyle'
+                recordIssues sourceCodeRetention: 'LAST_BUILD', tools: [checkStyle()]
             }
         }
         stage('package with akshat'){

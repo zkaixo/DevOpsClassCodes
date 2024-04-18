@@ -10,7 +10,7 @@ pipeline{
             steps{
                  git url: "${git}"
                  echo 'github url checkout'
-                 echo '${FNAME}'
+                 sh 'echo ${FNAME}'
             }
         }
         stage('codecompile with akshat'){

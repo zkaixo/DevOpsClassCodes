@@ -1,7 +1,7 @@
 pipeline{
     environment{
   git = "https://github.com/akshu20791/DevOpsClassCodes/"
-  compile = "compile"
+  compile = "mvn compile"
 }
     agent any
     stages{
@@ -14,7 +14,7 @@ pipeline{
         stage('codecompile with akshat'){
             steps{
                 echo 'starting compiling'
-                sh 'mvn ${compile}'
+                sh '${compile}'
             }
         }
         stage('codetesting with akshat'){

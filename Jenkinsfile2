@@ -15,7 +15,7 @@ pipeline{
                  git url: "${git}"
                  echo 'github url checkout'
                  sh 'echo ${FNAME}'
-                 echo "${sample_array}"
+                 echo "${sample_array[0]}"
             }
         }
         stage('codecompile with akshat'){

@@ -7,6 +7,9 @@ pipeline{
     agent any
     stages{
         stage('checkout the code from github'){
+         environment{
+          FNAME = "Akshat_local"
+         }
             steps{
                  git url: "${git}"
                  echo 'github url checkout'
@@ -17,6 +20,7 @@ pipeline{
             steps{
                 echo 'starting compiling'
                 sh '${compile}'
+                sh 'echo ${FNAME}'
             }
         }
         stage('codetesting with akshat'){

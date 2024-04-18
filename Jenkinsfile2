@@ -1,16 +1,20 @@
 pipeline{
+    environment{
+  git = "https://github.com/akshu20791/DevOpsClassCodes/"
+  compile = "compile"
+}
     agent any
     stages{
         stage('checkout the code from github'){
             steps{
-                 git url: 'https://github.com/akshu20791/DevOpsClassCodes/'
+                 git url: ${git}
                  echo 'github url checkout'
             }
         }
         stage('codecompile with akshat'){
             steps{
                 echo 'starting compiling'
-                sh 'mvn compile'
+                sh 'mvn ${compile}'
             }
         }
         stage('codetesting with akshat'){

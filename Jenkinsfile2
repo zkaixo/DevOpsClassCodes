@@ -1,3 +1,4 @@
+def sample_array = ["Akshat", "John", "Aman"]
 pipeline{
     environment{
   git = "https://github.com/akshu20791/DevOpsClassCodes/"
@@ -14,6 +15,7 @@ pipeline{
                  git url: "${git}"
                  echo 'github url checkout'
                  sh 'echo ${FNAME}'
+                 echo "${sample_array}"
             }
         }
         stage('codecompile with akshat'){

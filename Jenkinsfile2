@@ -2,6 +2,7 @@ pipeline{
     environment{
   git = "https://github.com/akshu20791/DevOpsClassCodes/"
   compile = "mvn compile"
+  FNAME = "Akshat_global"
 }
     agent any
     stages{
@@ -9,6 +10,7 @@ pipeline{
             steps{
                  git url: "${git}"
                  echo 'github url checkout'
+                 echo '${FNAME}'
             }
         }
         stage('codecompile with akshat'){
